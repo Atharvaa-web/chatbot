@@ -6,18 +6,7 @@ export default async function handler(req, res) {
       return res.status(405).json({ error: "Only POST requests allowed" });
     }
 
-    // ⭐ FIX: manually parse body if needed
-    let body = req.body;
-    if (!body) {
-      const raw = await new Promise((resolve) => {
-        let data = "";
-        req.on("data", chunk => data += chunk);
-        req.on("end", () => resolve(data));
-      });
-      body = JSON.parse(raw);
-    }
-
-    const message = body.message;
+    const message = req.body.message;
 
     if (!message) {
       return res.status(400).json({ error: "Message is required" });
