@@ -23,6 +23,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Message is required" });
     }
 
+    console.log('OPENAI_API_KEY:', process.env.OPENAI_API_KEY ? 'LOADED' : 'MISSING');
     const client = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY
     });
