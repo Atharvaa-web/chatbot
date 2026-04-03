@@ -1,8 +1,6 @@
 import Groq from "groq-sdk";
 
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY,
-});
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -10,18 +8,17 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { messages } = JSON.parse(req.body);
+    const { message } = req.body;
+    if (!message) return res.status(400).json({ error: "Message required" });
 
     const completion = await groq.chat.completions.create({
-      model: "llama3-8b-8192",
-      messages,
+      model: "llama-3.1-8b-instant",
+      messages: [{ role: "user", content: message }],
       temperature: 0.7,
       stream: false,
     });
 
-    res.status(200).json({
-      reply: completion.choices[0].message.content,
-    });
+    res.status(200).json({ reply: completion.choices[0].message.content });
   } catch (err) {
     console.error("Chat Error:", err);
     res.status(500).json({ error: "Chat request failed" });
