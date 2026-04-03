@@ -1,24 +1,27 @@
-# Chatbot Fixed ✅
+# Vercel Deployment TODO
 
-**Changes Made:**
-- Fixed React 18 downgrade, build success (Vercel blank page fixed).
-- Added proxy for local /api calls.
-- Created api/server.js (Express backend port 3001).
-- Installed express/cors in api/.
-- Improved App.js: Loading, error display, input clear.
-- .env.example for OPENAI_API_KEY.
+## Step 1: Refactor API to Vercel Serverless Functions [COMPLETE]
+- Create/update `api/chat.js` with `/api/chat` handler (Groq chat).
+- Create/update `api/stt.js` with `/api/stt` handler (Groq Whisper).
+- Create/update `api/tts.js` with `/api/tts` handler (ElevenLabs).
+- Extract logic from `server.js`.
 
-**To Run Local:**
-1. Copy `.env.example` to `.env`, add `OPENAI_API_KEY=sk-...` (your key).
-2. Terminal 1: `cd api` then `node server.js` (runs on http://localhost:3001)
-3. Terminal 2: `npm start` (frontend localhost:3000)
-4. Open http://localhost:3000, type message, Send → see GPT reply or error.
+## Step 2: Update vercel.json [COMPLETE]\n- Fixed routes for `/api/chat`, `/api/stt`, `/api/tts`."
+</xai:function_call >
 
-**Vercel Deploy:**
-1. `npm run build`
-2. `npx vercel --prod`
-3. In Vercel dashboard: Project Settings > Environment Variables > Add `OPENAI_API_KEY` (production).
+<xai:function_call name="execute_command">
+<parameter name="command">git add .
 
-Chatbot now works locally and deployed! Check console/network for any API key issues.
-npm run build to verify.
+## Step 3: Commit and Push [PENDING]
+- `git add .`
+- `git commit -m "Refactor for Vercel deploy"`
+- `git push`
+
+## Step 4: Verify Deployment & Env Vars [PENDING]
+- Check https://chatbot-sigma-two-47.vercel.app/
+- Set GROQ_API_KEY, ELEVENLABS_KEY in Vercel dashboard.
+- Test endpoints.
+
+## Step 5: Cleanup [PENDING]
+- Remove/update server.js if not needed locally.
 

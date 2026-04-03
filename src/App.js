@@ -38,7 +38,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Groq Chatbot</h1>
+      <h1>Atharva's AI Chatbot</h1>
 
       {errorMsg && (
         <div style={{
